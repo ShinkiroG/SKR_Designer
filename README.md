@@ -108,6 +108,8 @@ Depois é só incluir o script em `src/index.html`.
 
 1. Atualize `version` em `package.json` (ex.: `0.3.0`) e faça commit na `main`.
 2. Crie e envie a tag: `git tag v0.3.0 && git push origin v0.3.0`.
+   Alternativa sem terminal: na aba **Actions**, workflow **Build**, clique em
+   **Run workflow** na `main` com **publicar** marcado.
 3. O GitHub Actions gera o instalador e o portátil e publica a release.
    A partir daí, quem clicar em **Verificar atualizações** recebe a versão nova.
 

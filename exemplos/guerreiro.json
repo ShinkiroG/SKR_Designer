@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "name": "Guerreiro (exemplo)",
+  "nodes": [
+    {
+      "id": "n1",
+      "name": "Golpe Forte",
+      "description": "Ataque básico com +20% de dano.",
+      "cost": 1,
+      "maxRank": 3,
+      "category": "Ataque",
+      "color": "#ef6b6b",
+      "x": 100,
+      "y": 60,
+      "prerequisites": []
+    },
+    {
+      "id": "n2",
+      "name": "Pele de Ferro",
+      "description": "+10% de armadura.",
+      "cost": 1,
+      "maxRank": 3,
+      "category": "Defesa",
+      "color": "#6ea8ff",
+      "x": 420,
+      "y": 60,
+      "prerequisites": []
+    },
+    {
+      "id": "n3",
+      "name": "Investida",
+      "description": "Avança até o inimigo e o atordoa por 1s.",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "Ataque",
+      "color": "#ef6b6b",
+      "x": 0,
+      "y": 200,
+      "prerequisites": [
+        "n1"
+      ]
+    },
+    {
+      "id": "n4",
+      "name": "Fúria",
+      "description": "Cada golpe recebido aumenta o dano em 2%.",
+      "cost": 2,
+      "maxRank": 2,
+      "category": "Ataque",
+      "color": "#ef6b6b",
+      "x": 200,
+      "y": 200,
+      "prerequisites": [
+        "n1"
+      ]
+    },
+    {
+      "id": "n5",
+      "name": "Escudo Erguido",
+      "description": "Bloqueia 50% do dano frontal.",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "Defesa",
+      "color": "#6ea8ff",
+      "x": 420,
+      "y": 200,
+      "prerequisites": [
+        "n2"
+      ]
+    },
+    {
+      "id": "n6",
+      "name": "Berserker",
+      "description": "Ultimate: dobra o dano por 10s, mas ignora defesa.",
+      "cost": 3,
+      "maxRank": 1,
+      "category": "Ultimate",
+      "color": "#f2b84b",
+      "x": 200,
+      "y": 340,
+      "prerequisites": [
+        "n3",
+        "n4"
+      ]
+    },
+    {
+      "id": "n7",
+      "name": "Muralha",
+      "description": "Ultimate: fica imune a dano por 3s.",
+      "cost": 3,
+      "maxRank": 1,
+      "category": "Ultimate",
+      "color": "#f2b84b",
+      "x": 420,
+      "y": 340,
+      "prerequisites": [
+        "n5",
+        "n4"
+      ]
+    }
+  ]
+}

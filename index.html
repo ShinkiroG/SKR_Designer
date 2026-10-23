@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SKR Designer · Skill Tree</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand">SKR Designer <span>Skill Tree</span></div>
+    <input id="treeName" class="tree-name" type="text" placeholder="Nome da árvore" aria-label="Nome da árvore">
+
+    <div class="group">
+      <button id="btnAdd" title="Adicionar nó (N)">+ Nó</button>
+      <button id="btnDelete" title="Excluir nó selecionado (Delete)">Excluir</button>
+    </div>
+
+    <div class="group">
+      <button id="btnNew" title="Começar uma árvore vazia">Nova</button>
+      <button id="btnOpen" title="Abrir arquivo JSON">Abrir JSON</button>
+      <button id="btnSave" title="Baixar a árvore como JSON (Ctrl+S)">Salvar JSON</button>
+      <button id="btnExample" title="Carregar uma árvore de exemplo">Exemplo</button>
+      <input id="fileInput" type="file" accept=".json,application/json" hidden>
+    </div>
+
+    <div class="group">
+      <button id="btnMode" class="mode" title="Alternar entre editar e testar a árvore">Modo: Editar</button>
+      <label class="budget" id="budgetBox" hidden>
+        Pontos <input id="budget" type="number" min="0" value="10">
+        <span id="spent">gastos: 0</span>
+      </label>
+      <button id="btnReset" hidden>Zerar teste</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="canvas-wrap">
+      <svg id="canvas" tabindex="0">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" class="grid-line"/>
+          </pattern>
+          <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head"/>
+          </marker>
+        </defs>
+        <g id="viewport">
+          <rect x="-5000" y="-5000" width="10000" height="10000" fill="url(#grid)" class="bg"/>
+          <g id="links"></g>
+          <g id="nodes"></g>
+        </g>
+      </svg>
+      <div class="hint" id="hint"></div>
+    </section>
+
+    <aside class="panel" id="panel">
+      <div id="panelEmpty" class="empty">
+        <h2>Como usar</h2>
+        <ul>
+          <li><b>Duplo clique</b> no fundo cria um nó.</li>
+          <li><b>Arraste</b> um nó para movê-lo; arraste o fundo para mover a visão.</li>
+          <li><b>Roda do mouse</b> dá zoom.</li>
+          <li>Selecione um nó e <b>Shift + clique</b> em outro: o selecionado vira <b>pré-requisito</b> do clicado (clique de novo para remover).</li>
+          <li>No <b>Modo Testar</b>, clique para desbloquear habilidades e clique direito para devolver pontos.</li>
+          <li>A árvore é salva automaticamente no navegador. Use <b>Salvar JSON</b> para guardar um arquivo.</li>
+        </ul>
+        <div id="stats" class="stats"></div>
+      </div>
+
+      <form id="form" hidden autocomplete="off">
+        <h2>Habilidade</h2>
+        <label>Nome
+          <input name="name" type="text" required>
+        </label>
+        <label>Descrição
+          <textarea name="description" rows="4"></textarea>
+        </label>
+        <div class="row">
+          <label>Custo (pontos)
+            <input name="cost" type="number" min="0" step="1">
+          </label>
+          <label>Nível máximo
+            <input name="maxRank" type="number" min="1" step="1">
+          </label>
+        </div>
+        <div class="row">
+          <label>Categoria
+            <input name="category" type="text" list="categories" placeholder="ex.: Ataque">
+            <datalist id="categories"></datalist>
+          </label>
+          <label>Cor
+            <input name="color" type="color">
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>Pré-requisitos</legend>
+          <ul id="prereqList" class="chips"></ul>
+          <select id="prereqAdd">
+            <option value="">+ adicionar pré-requisito…</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Desbloqueia</legend>
+          <ul id="unlocksList" class="chips readonly"></ul>
+        </fieldset>
+      </form>
+
+      <div id="testInfo" class="test-info" hidden></div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 {
-  "version": 1,
+  "type": "skill-tree",
+  "version": 2,
   "name": "Guerreiro (exemplo)",
+  "budget": 10,
   "nodes": [
     {
       "id": "n1",
@@ -10,8 +12,8 @@
       "maxRank": 3,
       "category": "Ataque",
       "color": "#ef6b6b",
-      "x": 100,
-      "y": 60,
+      "x": 0,
+      "y": 32,
       "prerequisites": []
     },
     {
@@ -22,8 +24,8 @@
       "maxRank": 3,
       "category": "Defesa",
       "color": "#6ea8ff",
-      "x": 420,
-      "y": 60,
+      "x": 0,
+      "y": 288,
       "prerequisites": []
     },
     {
@@ -34,8 +36,8 @@
       "maxRank": 1,
       "category": "Ataque",
       "color": "#ef6b6b",
-      "x": 0,
-      "y": 200,
+      "x": 288,
+      "y": -48,
       "prerequisites": [
         "n1"
       ]
@@ -48,8 +50,8 @@
       "maxRank": 2,
       "category": "Ataque",
       "color": "#ef6b6b",
-      "x": 200,
-      "y": 200,
+      "x": 288,
+      "y": 112,
       "prerequisites": [
         "n1"
       ]
@@ -62,8 +64,8 @@
       "maxRank": 1,
       "category": "Defesa",
       "color": "#6ea8ff",
-      "x": 420,
-      "y": 200,
+      "x": 288,
+      "y": 288,
       "prerequisites": [
         "n2"
       ]
@@ -76,8 +78,8 @@
       "maxRank": 1,
       "category": "Ultimate",
       "color": "#f2b84b",
-      "x": 200,
-      "y": 340,
+      "x": 576,
+      "y": 32,
       "prerequisites": [
         "n3",
         "n4"
@@ -91,11 +93,11 @@
       "maxRank": 1,
       "category": "Ultimate",
       "color": "#f2b84b",
-      "x": 420,
-      "y": 340,
+      "x": 576,
+      "y": 208,
       "prerequisites": [
-        "n5",
-        "n4"
+        "n4",
+        "n5"
       ]
     }
   ]

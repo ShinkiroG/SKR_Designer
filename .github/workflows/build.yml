@@ -1,0 +1,46 @@
+name: Build
+
+# Em pull requests e na main: gera o instalador e a versão portátil como
+# artefatos para teste. Em tags v*: publica uma release no GitHub, que é de
+# onde o botão "Verificar atualizações" busca novas versões.
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+
+      - name: Build (sem publicar)
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: npx electron-builder --win --publish never
+
+      - name: Build e publicar release
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: npx electron-builder --win --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SKR-Designer-windows
+          path: |
+            dist/*.exe
+            dist/latest.yml
+          if-no-files-found: error

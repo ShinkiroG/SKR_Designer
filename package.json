@@ -1,0 +1,85 @@
+{
+  "name": "skr-designer",
+  "productName": "SKR Designer",
+  "version": "0.2.0",
+  "description": "Ferramentas para game designers. Primeiro workspace: editor de Skill Tree.",
+  "author": "ShinkiroG",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "electron/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShinkiroG/SKR_Designer.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check electron/main.js && node --check electron/preload.js && node scripts/check-src.js",
+    "dist": "electron-builder --win --publish never",
+    "dist:linux": "electron-builder --linux --publish never",
+    "release": "electron-builder --win --publish always"
+  },
+  "build": {
+    "appId": "com.shinkirog.skrdesigner",
+    "productName": "SKR Designer",
+    "copyright": "ShinkiroG",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**",
+      "src/**",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "SKR Designer",
+      "artifactName": "SKR-Designer-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "SKR-Designer-Portable-${version}.${ext}"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ShinkiroG",
+        "repo": "SKR_Designer",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9"
+  }
+}
